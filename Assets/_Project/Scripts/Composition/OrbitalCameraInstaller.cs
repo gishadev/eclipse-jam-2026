@@ -1,9 +1,9 @@
-using EclipseJam.Gameplay.OrbitalCamera;
+using gishadev.eclipse.Gameplay.OrbitalCamera;
 using Unity.Cinemachine;
 using VContainer;
 using VContainer.Unity;
 
-namespace EclipseJam.Composition
+namespace gishadev.eclipse.Composition
 {
     public class OrbitalCameraInstaller : IInstaller
     {

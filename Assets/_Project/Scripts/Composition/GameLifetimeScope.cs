@@ -1,10 +1,10 @@
-using EclipseJam.Gameplay.OrbitalCamera;
+using gishadev.eclipse.Gameplay.OrbitalCamera;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace EclipseJam.Composition
+namespace gishadev.eclipse.Composition
 {
     /// <summary>
     /// Scope of the Game scene: lives while the scene is loaded. Parent is the root

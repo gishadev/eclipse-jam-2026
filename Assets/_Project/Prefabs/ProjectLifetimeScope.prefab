@@ -43,7 +43,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62ee79e8c2664b2782a8cc4bd9144785, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: EclipseJam::EclipseJam.Composition.ProjectLifetimeScope
+  m_EditorClassIdentifier: gishadev.eclipse::gishadev.eclipse.Composition.ProjectLifetimeScope
   parentReference:
     TypeName: 
   autoRun: 1

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1777af573444353a1ca945785471079, type: 3}
   m_Name: OrbitalCameraConfig
-  m_EditorClassIdentifier: EclipseJam::EclipseJam.Gameplay.OrbitalCamera.OrbitalCameraConfig
+  m_EditorClassIdentifier: gishadev.eclipse::gishadev.eclipse.Gameplay.OrbitalCamera.OrbitalCameraConfig
   horizontalSpeed: 90
   verticalSpeed: 60
   invertHorizontal: 1

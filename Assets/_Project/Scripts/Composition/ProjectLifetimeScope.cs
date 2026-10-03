@@ -1,4 +1,4 @@
-using EclipseJam.Infrastructure.Input;
+using gishadev.eclipse.Infrastructure.Input;
 using gishadev.tools.Audio;
 using gishadev.tools.Infrastructure;
 using gishadev.tools.Pooling;
@@ -6,7 +6,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace EclipseJam.Composition
+namespace gishadev.eclipse.Composition
 {
     /// <summary>
     /// Root scope: lives for the whole app (spawned from VContainerSettings, DontDestroyOnLoad).

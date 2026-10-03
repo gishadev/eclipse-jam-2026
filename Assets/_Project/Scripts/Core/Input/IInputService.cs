@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EclipseJam.Core.Input
+namespace gishadev.eclipse.Core.Input
 {
     /// <summary>
     /// Game-facing input. Gameplay/UI depend on this, never on <c>EclipseInput</c> or devices directly,

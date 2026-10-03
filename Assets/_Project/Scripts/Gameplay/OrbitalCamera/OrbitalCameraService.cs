@@ -1,9 +1,9 @@
-using EclipseJam.Core.Input;
+using gishadev.eclipse.Core.Input;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace EclipseJam.Gameplay.OrbitalCamera
+namespace gishadev.eclipse.Gameplay.OrbitalCamera
 {
     /// <summary>
     /// Orbits the Cinemachine camera around its tracking target (the camera rig) by driving

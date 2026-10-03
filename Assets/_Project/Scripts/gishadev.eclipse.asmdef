@@ -1,6 +1,6 @@
 {
-    "name": "EclipseJam",
-    "rootNamespace": "EclipseJam",
+    "name": "gishadev.eclipse",
+    "rootNamespace": "gishadev.eclipse",
     "references": [
         "VContainer",
         "UniTask",

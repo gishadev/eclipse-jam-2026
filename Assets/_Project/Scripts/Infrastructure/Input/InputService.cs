@@ -1,11 +1,10 @@
 using System;
-using EclipseJam.Core.Input;
-using gishadev.eclipse;
+using gishadev.eclipse.Core.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
 
-namespace EclipseJam.Infrastructure.Input
+namespace gishadev.eclipse.Infrastructure.Input
 {
     /// <summary>
     /// Wraps the generated <see cref="EclipseInput"/> actions. Owns the instance: enables it on build,

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace EclipseJam.Gameplay.OrbitalCamera
+namespace gishadev.eclipse.Gameplay.OrbitalCamera
 {
-    [CreateAssetMenu(menuName = "EclipseJam/Orbital Camera Config", fileName = "OrbitalCameraConfig")]
+    [CreateAssetMenu(menuName = "gishadev.eclipse/Orbital Camera Config", fileName = "OrbitalCameraConfig")]
     public class OrbitalCameraConfig : ScriptableObject
     {
         [Tooltip("Degrees per second around the rig (A/D).")]
