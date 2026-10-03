@@ -1,3 +1,6 @@
+using EclipseJam.Gameplay.OrbitalCamera;
+using Unity.Cinemachine;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -10,8 +13,13 @@ namespace EclipseJam.Composition
     /// </summary>
     public class GameLifetimeScope : LifetimeScope
     {
+        [Header("Orbital Camera")]
+        [SerializeField] private CinemachineOrbitalFollow orbitalFollow;
+        [SerializeField] private OrbitalCameraConfig orbitalCameraConfig;
+
         protected override void Configure(IContainerBuilder builder)
         {
+            new OrbitalCameraInstaller(orbitalFollow, orbitalCameraConfig).Install(builder);
         }
     }
 }
