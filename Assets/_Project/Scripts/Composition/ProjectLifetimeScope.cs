@@ -1,3 +1,4 @@
+using EclipseJam.Infrastructure.Input;
 using gishadev.tools.Audio;
 using gishadev.tools.Infrastructure;
 using gishadev.tools.Pooling;
@@ -26,6 +27,8 @@ namespace EclipseJam.Composition
                 RegisterAudio = hasAudio,
                 RegisterEmitters = hasAudio && poolDataSO != null,
             }.Install(builder);
+
+            builder.RegisterEntryPoint<InputService>();
         }
     }
 }
