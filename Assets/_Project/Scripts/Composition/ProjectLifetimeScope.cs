@@ -1,3 +1,4 @@
+using gishadev.eclipse.Gameplay.Economy;
 using gishadev.eclipse.Infrastructure.Input;
 using gishadev.tools.Audio;
 using gishadev.tools.Infrastructure;
@@ -29,6 +30,7 @@ namespace gishadev.eclipse.Composition
             }.Install(builder);
 
             builder.RegisterEntryPoint<InputService>();
+            builder.RegisterEntryPoint<MoneyService>().AsSelf();
         }
     }
 }

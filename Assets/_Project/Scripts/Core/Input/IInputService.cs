@@ -22,9 +22,15 @@ namespace gishadev.eclipse.Core.Input
         /// <summary>Scroll wheel this frame; ±1 per notch (Input System normalizes it by default). Positive = scroll up.</summary>
         float OrbitalScroll { get; }
 
+        /// <summary>Pointer position in screen pixels.</summary>
+        Vector2 PointerPosition { get; }
+
         bool IsGameInputEnabled { get; }
 
         event Action PausePressed;
+
+        /// <summary>Salvage click (LMB). Read <see cref="PointerPosition"/> for where.</summary>
+        event Action SalvagePressed;
 
         /// <summary>Turns the Game map on/off (e.g. while paused). General actions like Pause stay active.</summary>
         void SetGameInputEnabled(bool enabled);

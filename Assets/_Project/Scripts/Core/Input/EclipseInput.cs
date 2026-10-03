@@ -143,6 +143,26 @@ namespace gishadev.eclipse.Core.Input
                     ""interactions"": """",
                     ""initialStateCheck"": true,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Salvage"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc7697b1-c432-4fc8-8256-9f8432419caf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""PointerPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""1929967b-f572-499c-8c97-42f8db8c514b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -321,6 +341,28 @@ namespace gishadev.eclipse.Core.Input
                     ""action"": ""OrbitalScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37f28b57-4bf3-4f06-938c-5c2fb11a5037"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Salvage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9102be78-cbf3-43cb-9bb7-d60aa674d958"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -363,6 +405,8 @@ namespace gishadev.eclipse.Core.Input
             m_Game_OrbitalLook = m_Game.FindAction("OrbitalLook", throwIfNotFound: true);
             m_Game_OrbitalLookHold = m_Game.FindAction("OrbitalLookHold", throwIfNotFound: true);
             m_Game_OrbitalScroll = m_Game.FindAction("OrbitalScroll", throwIfNotFound: true);
+            m_Game_Salvage = m_Game.FindAction("Salvage", throwIfNotFound: true);
+            m_Game_PointerPosition = m_Game.FindAction("PointerPosition", throwIfNotFound: true);
             // General
             m_General = asset.FindActionMap("General", throwIfNotFound: true);
             m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
@@ -452,6 +496,8 @@ namespace gishadev.eclipse.Core.Input
         private readonly InputAction m_Game_OrbitalLook;
         private readonly InputAction m_Game_OrbitalLookHold;
         private readonly InputAction m_Game_OrbitalScroll;
+        private readonly InputAction m_Game_Salvage;
+        private readonly InputAction m_Game_PointerPosition;
         /// <summary>
         /// Provides access to input actions defined in input action map "Game".
         /// </summary>
@@ -483,6 +529,14 @@ namespace gishadev.eclipse.Core.Input
             /// Provides access to the underlying input action "Game/OrbitalScroll".
             /// </summary>
             public InputAction @OrbitalScroll => m_Wrapper.m_Game_OrbitalScroll;
+            /// <summary>
+            /// Provides access to the underlying input action "Game/Salvage".
+            /// </summary>
+            public InputAction @Salvage => m_Wrapper.m_Game_Salvage;
+            /// <summary>
+            /// Provides access to the underlying input action "Game/PointerPosition".
+            /// </summary>
+            public InputAction @PointerPosition => m_Wrapper.m_Game_PointerPosition;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -524,6 +578,12 @@ namespace gishadev.eclipse.Core.Input
                 @OrbitalScroll.started += instance.OnOrbitalScroll;
                 @OrbitalScroll.performed += instance.OnOrbitalScroll;
                 @OrbitalScroll.canceled += instance.OnOrbitalScroll;
+                @Salvage.started += instance.OnSalvage;
+                @Salvage.performed += instance.OnSalvage;
+                @Salvage.canceled += instance.OnSalvage;
+                @PointerPosition.started += instance.OnPointerPosition;
+                @PointerPosition.performed += instance.OnPointerPosition;
+                @PointerPosition.canceled += instance.OnPointerPosition;
             }
 
             /// <summary>
@@ -550,6 +610,12 @@ namespace gishadev.eclipse.Core.Input
                 @OrbitalScroll.started -= instance.OnOrbitalScroll;
                 @OrbitalScroll.performed -= instance.OnOrbitalScroll;
                 @OrbitalScroll.canceled -= instance.OnOrbitalScroll;
+                @Salvage.started -= instance.OnSalvage;
+                @Salvage.performed -= instance.OnSalvage;
+                @Salvage.canceled -= instance.OnSalvage;
+                @PointerPosition.started -= instance.OnPointerPosition;
+                @PointerPosition.performed -= instance.OnPointerPosition;
+                @PointerPosition.canceled -= instance.OnPointerPosition;
             }
 
             /// <summary>
@@ -721,6 +787,20 @@ namespace gishadev.eclipse.Core.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnOrbitalScroll(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Salvage" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnSalvage(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "PointerPosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPointerPosition(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "General" which allows adding and removing callbacks.

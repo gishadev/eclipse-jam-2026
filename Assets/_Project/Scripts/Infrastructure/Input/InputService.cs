@@ -19,13 +19,16 @@ namespace gishadev.eclipse.Infrastructure.Input
         public Vector2 OrbitalLook => _input.Game.OrbitalLook.ReadValue<Vector2>();
         public bool IsOrbitalLookHeld => _input.Game.OrbitalLookHold.IsPressed();
         public float OrbitalScroll => _input.Game.OrbitalScroll.ReadValue<float>();
+        public Vector2 PointerPosition => _input.Game.PointerPosition.ReadValue<Vector2>();
         public bool IsGameInputEnabled => _input.Game.enabled;
 
         public event Action PausePressed;
+        public event Action SalvagePressed;
 
         public void Initialize()
         {
             _input.General.Pause.performed += OnPausePerformed;
+            _input.Game.Salvage.performed += OnSalvagePerformed;
             _input.Enable();
         }
 
@@ -40,10 +43,12 @@ namespace gishadev.eclipse.Infrastructure.Input
         public void Dispose()
         {
             _input.General.Pause.performed -= OnPausePerformed;
+            _input.Game.Salvage.performed -= OnSalvagePerformed;
             _input.Disable();
             _input.Dispose();
         }
 
         private void OnPausePerformed(InputAction.CallbackContext _) => PausePressed?.Invoke();
+        private void OnSalvagePerformed(InputAction.CallbackContext _) => SalvagePressed?.Invoke();
     }
 }

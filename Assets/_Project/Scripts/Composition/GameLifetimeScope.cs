@@ -1,4 +1,5 @@
 using gishadev.eclipse.Gameplay.OrbitalCamera;
+using gishadev.eclipse.Gameplay.Salvage;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
@@ -13,13 +14,18 @@ namespace gishadev.eclipse.Composition
     /// </summary>
     public class GameLifetimeScope : LifetimeScope
     {
+        [SerializeField] private Camera mainCamera;
+
         [Header("Orbital Camera")]
         [SerializeField] private CinemachineOrbitalFollow orbitalFollow;
         [SerializeField] private OrbitalCameraConfig orbitalCameraConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterComponent(mainCamera);
+
             new OrbitalCameraInstaller(orbitalFollow, orbitalCameraConfig).Install(builder);
+            builder.RegisterEntryPoint<SalvageService>();
         }
     }
 }
