@@ -1,5 +1,6 @@
 using gishadev.eclipse.Gameplay.OrbitalCamera;
 using gishadev.eclipse.Gameplay.Salvage;
+using gishadev.eclipse.GUI;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
@@ -20,12 +21,16 @@ namespace gishadev.eclipse.Composition
         [SerializeField] private CinemachineOrbitalFollow orbitalFollow;
         [SerializeField] private OrbitalCameraConfig orbitalCameraConfig;
 
+        [Header("GUI")]
+        [SerializeField] private MoneyView moneyView;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(mainCamera);
 
             new OrbitalCameraInstaller(orbitalFollow, orbitalCameraConfig).Install(builder);
             builder.RegisterEntryPoint<SalvageService>();
+            new MoneyGUIInstaller(moneyView).Install(builder);
         }
     }
 }

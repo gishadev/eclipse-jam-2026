@@ -7,7 +7,7 @@ namespace gishadev.eclipse.Gameplay.Economy
 {
     /// <summary>
     /// Owns the player's money. App-lifetime (Project scope), so it survives scene reloads.
-    /// Earns from <see cref="PartSalvagedEvent"/>.
+    /// Earns from <see cref="PartSalvagedEvent"/>, announces changes with <see cref="MoneyChangedEvent"/>.
     /// </summary>
     public class MoneyService : IInitializable, IDisposable
     {
@@ -23,6 +23,10 @@ namespace gishadev.eclipse.Gameplay.Economy
 
         public void Dispose() => _partSalvagedSubscription?.Dispose();
 
-        private void OnPartSalvaged(PartSalvagedEvent e) => CurrentMoney += e.Price;
+        private void OnPartSalvaged(PartSalvagedEvent e)
+        {
+            CurrentMoney += e.Price;
+            _eventBus.Fire(new MoneyChangedEvent(CurrentMoney));
+        }
     }
 }
