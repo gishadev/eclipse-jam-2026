@@ -15,6 +15,16 @@
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
+                },
+                {
+                    "name": "OrbitalZooming",
+                    "type": "Value",
+                    "id": "11ca275e-3308-4842-9e04-9e8608a6f211",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -125,6 +135,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "OrbitalMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "KeyboardRF",
+                    "id": "d1ce0588-23ba-4499-b793-e11b63f91cb9",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OrbitalZooming",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "cd23ad93-9051-4e8b-a409-a2c1a5682fa9",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OrbitalZooming",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "b9e9d179-73d0-4753-bd94-c09001924620",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OrbitalZooming",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

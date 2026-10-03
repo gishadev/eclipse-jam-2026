@@ -103,6 +103,16 @@ namespace gishadev.eclipse
                     ""interactions"": """",
                     ""initialStateCheck"": true,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""OrbitalZooming"",
+                    ""type"": ""Value"",
+                    ""id"": ""11ca275e-3308-4842-9e04-9e8608a6f211"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -215,6 +225,39 @@ namespace gishadev.eclipse
                     ""action"": ""OrbitalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""KeyboardRF"",
+                    ""id"": ""d1ce0588-23ba-4499-b793-e11b63f91cb9"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OrbitalZooming"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""cd23ad93-9051-4e8b-a409-a2c1a5682fa9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OrbitalZooming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b9e9d179-73d0-4753-bd94-c09001924620"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OrbitalZooming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -253,6 +296,7 @@ namespace gishadev.eclipse
             // Game
             m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
             m_Game_OrbitalMovement = m_Game.FindAction("OrbitalMovement", throwIfNotFound: true);
+            m_Game_OrbitalZooming = m_Game.FindAction("OrbitalZooming", throwIfNotFound: true);
             // General
             m_General = asset.FindActionMap("General", throwIfNotFound: true);
             m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
@@ -338,6 +382,7 @@ namespace gishadev.eclipse
         private readonly InputActionMap m_Game;
         private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
         private readonly InputAction m_Game_OrbitalMovement;
+        private readonly InputAction m_Game_OrbitalZooming;
         /// <summary>
         /// Provides access to input actions defined in input action map "Game".
         /// </summary>
@@ -353,6 +398,10 @@ namespace gishadev.eclipse
             /// Provides access to the underlying input action "Game/OrbitalMovement".
             /// </summary>
             public InputAction @OrbitalMovement => m_Wrapper.m_Game_OrbitalMovement;
+            /// <summary>
+            /// Provides access to the underlying input action "Game/OrbitalZooming".
+            /// </summary>
+            public InputAction @OrbitalZooming => m_Wrapper.m_Game_OrbitalZooming;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -382,6 +431,9 @@ namespace gishadev.eclipse
                 @OrbitalMovement.started += instance.OnOrbitalMovement;
                 @OrbitalMovement.performed += instance.OnOrbitalMovement;
                 @OrbitalMovement.canceled += instance.OnOrbitalMovement;
+                @OrbitalZooming.started += instance.OnOrbitalZooming;
+                @OrbitalZooming.performed += instance.OnOrbitalZooming;
+                @OrbitalZooming.canceled += instance.OnOrbitalZooming;
             }
 
             /// <summary>
@@ -396,6 +448,9 @@ namespace gishadev.eclipse
                 @OrbitalMovement.started -= instance.OnOrbitalMovement;
                 @OrbitalMovement.performed -= instance.OnOrbitalMovement;
                 @OrbitalMovement.canceled -= instance.OnOrbitalMovement;
+                @OrbitalZooming.started -= instance.OnOrbitalZooming;
+                @OrbitalZooming.performed -= instance.OnOrbitalZooming;
+                @OrbitalZooming.canceled -= instance.OnOrbitalZooming;
             }
 
             /// <summary>
@@ -539,6 +594,13 @@ namespace gishadev.eclipse
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnOrbitalMovement(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "OrbitalZooming" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnOrbitalZooming(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "General" which allows adding and removing callbacks.

@@ -16,6 +16,7 @@ namespace EclipseJam.Infrastructure.Input
         private readonly EclipseInput _input = new();
 
         public Vector2 OrbitalMovement => _input.Game.OrbitalMovement.ReadValue<Vector2>();
+        public float OrbitalZooming => _input.Game.OrbitalZooming.ReadValue<float>();
         public bool IsGameInputEnabled => _input.Game.enabled;
 
         public event Action PausePressed;

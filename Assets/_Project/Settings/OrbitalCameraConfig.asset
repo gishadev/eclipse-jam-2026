@@ -16,3 +16,5 @@ MonoBehaviour:
   verticalSpeed: 60
   invertHorizontal: 1
   invertVertical: 0
+  zoomSpeed: 1
+  invertZoom: 0

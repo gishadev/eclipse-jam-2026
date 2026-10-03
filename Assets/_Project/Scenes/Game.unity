@@ -513,7 +513,7 @@ MonoBehaviour:
   RadialAxis:
     Value: 1
     Center: 1
-    Range: {x: 1, y: 1}
+    Range: {x: 0.4, y: 2}
     Wrap: 0
     Recentering:
       Enabled: 0

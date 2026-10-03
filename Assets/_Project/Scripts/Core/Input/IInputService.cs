@@ -11,6 +11,7 @@ namespace EclipseJam.Core.Input
     {
         /// <summary>Orbital movement direction, polled every frame. Zero while game input is disabled.</summary>
         Vector2 OrbitalMovement { get; }
+        float OrbitalZooming { get; }
 
         bool IsGameInputEnabled { get; }
 
