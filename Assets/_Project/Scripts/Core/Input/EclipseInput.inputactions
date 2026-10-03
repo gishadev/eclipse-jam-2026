@@ -25,6 +25,36 @@
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
+                },
+                {
+                    "name": "OrbitalLook",
+                    "type": "Value",
+                    "id": "1cf13779-67b6-4201-8f71-a43b36af5115",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "OrbitalLookHold",
+                    "type": "Button",
+                    "id": "b50c009f-acfa-48f3-87e8-c21eda73456f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "OrbitalScroll",
+                    "type": "Value",
+                    "id": "20ef30d5-04df-453d-9ff5-f7ec6e7f4c46",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -170,6 +200,39 @@
                     "action": "OrbitalZooming",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d0f09a1b-8c5e-4030-9271-b4cfa2a1de75",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OrbitalLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e12fdd94-2aaa-4db8-a4b4-c4e807349efd",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OrbitalLookHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "775c20a4-6181-43a8-8745-be270c57e6c5",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OrbitalScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

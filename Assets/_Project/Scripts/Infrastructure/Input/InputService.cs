@@ -17,6 +17,9 @@ namespace EclipseJam.Infrastructure.Input
 
         public Vector2 OrbitalMovement => _input.Game.OrbitalMovement.ReadValue<Vector2>();
         public float OrbitalZooming => _input.Game.OrbitalZooming.ReadValue<float>();
+        public Vector2 OrbitalLook => _input.Game.OrbitalLook.ReadValue<Vector2>();
+        public bool IsOrbitalLookHeld => _input.Game.OrbitalLookHold.IsPressed();
+        public float OrbitalScroll => _input.Game.OrbitalScroll.ReadValue<float>();
         public bool IsGameInputEnabled => _input.Game.enabled;
 
         public event Action PausePressed;

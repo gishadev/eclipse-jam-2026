@@ -19,11 +19,29 @@ namespace EclipseJam.Gameplay.OrbitalCamera
 
         [SerializeField] private bool invertZoom;
 
+        [Header("Mouse")]
+        [Tooltip("Degrees per pixel of mouse movement while RMB is held.")]
+        [SerializeField] private float mouseOrbitSensitivity = 0.2f;
+
+        [SerializeField] private bool invertMouseHorizontal;
+        [SerializeField] private bool invertMouseVertical;
+
+        [Tooltip("Zoom per scroll notch. 0.1 ≈ 10% distance change per notch.")]
+        [SerializeField] private float scrollZoomStep = 0.1f;
+
+        [Tooltip("Off: scroll up zooms in.")]
+        [SerializeField] private bool invertScroll;
+
         public float HorizontalSpeed => horizontalSpeed;
         public float VerticalSpeed => verticalSpeed;
         public bool InvertHorizontal => invertHorizontal;
         public bool InvertVertical => invertVertical;
         public float ZoomSpeed => zoomSpeed;
         public bool InvertZoom => invertZoom;
+        public float MouseOrbitSensitivity => mouseOrbitSensitivity;
+        public bool InvertMouseHorizontal => invertMouseHorizontal;
+        public bool InvertMouseVertical => invertMouseVertical;
+        public float ScrollZoomStep => scrollZoomStep;
+        public bool InvertScroll => invertScroll;
     }
 }

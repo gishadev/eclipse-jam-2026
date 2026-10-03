@@ -18,3 +18,8 @@ MonoBehaviour:
   invertVertical: 0
   zoomSpeed: 1
   invertZoom: 0
+  mouseOrbitSensitivity: 0.2
+  invertMouseHorizontal: 0
+  invertMouseVertical: 1
+  scrollZoomStep: 0.1
+  invertScroll: 0

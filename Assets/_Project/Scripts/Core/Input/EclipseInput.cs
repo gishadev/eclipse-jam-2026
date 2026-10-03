@@ -113,6 +113,36 @@ namespace gishadev.eclipse
                     ""interactions"": """",
                     ""initialStateCheck"": true,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""OrbitalLook"",
+                    ""type"": ""Value"",
+                    ""id"": ""1cf13779-67b6-4201-8f71-a43b36af5115"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""OrbitalLookHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""b50c009f-acfa-48f3-87e8-c21eda73456f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""OrbitalScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""20ef30d5-04df-453d-9ff5-f7ec6e7f4c46"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -258,6 +288,39 @@ namespace gishadev.eclipse
                     ""action"": ""OrbitalZooming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0f09a1b-8c5e-4030-9271-b4cfa2a1de75"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OrbitalLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e12fdd94-2aaa-4db8-a4b4-c4e807349efd"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OrbitalLookHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""775c20a4-6181-43a8-8745-be270c57e6c5"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OrbitalScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -297,6 +360,9 @@ namespace gishadev.eclipse
             m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
             m_Game_OrbitalMovement = m_Game.FindAction("OrbitalMovement", throwIfNotFound: true);
             m_Game_OrbitalZooming = m_Game.FindAction("OrbitalZooming", throwIfNotFound: true);
+            m_Game_OrbitalLook = m_Game.FindAction("OrbitalLook", throwIfNotFound: true);
+            m_Game_OrbitalLookHold = m_Game.FindAction("OrbitalLookHold", throwIfNotFound: true);
+            m_Game_OrbitalScroll = m_Game.FindAction("OrbitalScroll", throwIfNotFound: true);
             // General
             m_General = asset.FindActionMap("General", throwIfNotFound: true);
             m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
@@ -383,6 +449,9 @@ namespace gishadev.eclipse
         private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
         private readonly InputAction m_Game_OrbitalMovement;
         private readonly InputAction m_Game_OrbitalZooming;
+        private readonly InputAction m_Game_OrbitalLook;
+        private readonly InputAction m_Game_OrbitalLookHold;
+        private readonly InputAction m_Game_OrbitalScroll;
         /// <summary>
         /// Provides access to input actions defined in input action map "Game".
         /// </summary>
@@ -402,6 +471,18 @@ namespace gishadev.eclipse
             /// Provides access to the underlying input action "Game/OrbitalZooming".
             /// </summary>
             public InputAction @OrbitalZooming => m_Wrapper.m_Game_OrbitalZooming;
+            /// <summary>
+            /// Provides access to the underlying input action "Game/OrbitalLook".
+            /// </summary>
+            public InputAction @OrbitalLook => m_Wrapper.m_Game_OrbitalLook;
+            /// <summary>
+            /// Provides access to the underlying input action "Game/OrbitalLookHold".
+            /// </summary>
+            public InputAction @OrbitalLookHold => m_Wrapper.m_Game_OrbitalLookHold;
+            /// <summary>
+            /// Provides access to the underlying input action "Game/OrbitalScroll".
+            /// </summary>
+            public InputAction @OrbitalScroll => m_Wrapper.m_Game_OrbitalScroll;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -434,6 +515,15 @@ namespace gishadev.eclipse
                 @OrbitalZooming.started += instance.OnOrbitalZooming;
                 @OrbitalZooming.performed += instance.OnOrbitalZooming;
                 @OrbitalZooming.canceled += instance.OnOrbitalZooming;
+                @OrbitalLook.started += instance.OnOrbitalLook;
+                @OrbitalLook.performed += instance.OnOrbitalLook;
+                @OrbitalLook.canceled += instance.OnOrbitalLook;
+                @OrbitalLookHold.started += instance.OnOrbitalLookHold;
+                @OrbitalLookHold.performed += instance.OnOrbitalLookHold;
+                @OrbitalLookHold.canceled += instance.OnOrbitalLookHold;
+                @OrbitalScroll.started += instance.OnOrbitalScroll;
+                @OrbitalScroll.performed += instance.OnOrbitalScroll;
+                @OrbitalScroll.canceled += instance.OnOrbitalScroll;
             }
 
             /// <summary>
@@ -451,6 +541,15 @@ namespace gishadev.eclipse
                 @OrbitalZooming.started -= instance.OnOrbitalZooming;
                 @OrbitalZooming.performed -= instance.OnOrbitalZooming;
                 @OrbitalZooming.canceled -= instance.OnOrbitalZooming;
+                @OrbitalLook.started -= instance.OnOrbitalLook;
+                @OrbitalLook.performed -= instance.OnOrbitalLook;
+                @OrbitalLook.canceled -= instance.OnOrbitalLook;
+                @OrbitalLookHold.started -= instance.OnOrbitalLookHold;
+                @OrbitalLookHold.performed -= instance.OnOrbitalLookHold;
+                @OrbitalLookHold.canceled -= instance.OnOrbitalLookHold;
+                @OrbitalScroll.started -= instance.OnOrbitalScroll;
+                @OrbitalScroll.performed -= instance.OnOrbitalScroll;
+                @OrbitalScroll.canceled -= instance.OnOrbitalScroll;
             }
 
             /// <summary>
@@ -601,6 +700,27 @@ namespace gishadev.eclipse
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnOrbitalZooming(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "OrbitalLook" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnOrbitalLook(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "OrbitalLookHold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnOrbitalLookHold(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "OrbitalScroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnOrbitalScroll(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "General" which allows adding and removing callbacks.

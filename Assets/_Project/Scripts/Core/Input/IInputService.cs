@@ -13,6 +13,15 @@ namespace EclipseJam.Core.Input
         Vector2 OrbitalMovement { get; }
         float OrbitalZooming { get; }
 
+        /// <summary>Mouse delta this frame, in pixels.</summary>
+        Vector2 OrbitalLook { get; }
+
+        /// <summary>True while the orbit drag button (RMB) is held.</summary>
+        bool IsOrbitalLookHeld { get; }
+
+        /// <summary>Scroll wheel this frame; ±1 per notch (Input System normalizes it by default). Positive = scroll up.</summary>
+        float OrbitalScroll { get; }
+
         bool IsGameInputEnabled { get; }
 
         event Action PausePressed;
