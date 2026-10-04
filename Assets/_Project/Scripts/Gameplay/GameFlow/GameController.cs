@@ -29,6 +29,7 @@ namespace gishadev.eclipse.Gameplay.GameFlow
 
         public RoundState State { get; private set; }
         public float RemainingTime { get; private set; }
+        public float RoundDuration => _config.RoundDuration;
         public int RemainingParts { get; private set; }
 
         public GameController(Vehicle vehicle, GameConfig config, IEventBus eventBus, IInputService input)
