@@ -27,6 +27,12 @@
       },
       "hash": "c003ff75952386459a2ee25fc2b24fcb9dd3eb6c"
     },
+    "com.heath.lattice": {
+      "version": "file:com.heath.lattice",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.kyrylokuzyk.primetween": {
       "version": "file:../Packages/com.kyrylokuzyk.primetween.tgz",
       "depth": 0,

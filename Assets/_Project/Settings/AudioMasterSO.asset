@@ -46,7 +46,7 @@ MonoBehaviour:
   - <Name>k__BackingField: crushing
     <AudioClips>k__BackingField:
     - {fileID: 8300000, guid: 823d956b579884a4686a464f6ff3b8c9, type: 3}
-    <InitialVolume>k__BackingField: 1
+    <InitialVolume>k__BackingField: 0.4
     <Pitch>k__BackingField: 1
   - <Name>k__BackingField: strip_metal
     <AudioClips>k__BackingField:

@@ -9,7 +9,8 @@
         "Unity.InputSystem",
         "Unity.Cinemachine",
         "Unity.TextMeshPro",
-        "UnityEngine.UI"
+        "UnityEngine.UI",
+        "Lattice.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

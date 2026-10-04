@@ -2,6 +2,7 @@ using System;
 using gishadev.eclipse.Core.Events;
 using gishadev.eclipse.Core.Input;
 using gishadev.eclipse.Gameplay.Salvage;
+using gishadev.eclipse.Visuals;
 using gishadev.tools.Audio;
 using gishadev.tools.Events;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace gishadev.eclipse.Gameplay.GameFlow
         private readonly IEventBus _eventBus;
         private readonly IInputService _input;
         private readonly IAudioManager _audioManager;
+        private readonly PlatformAnimationHandler _platformAnimation;
         private IDisposable _partSalvagedSubscription;
 
         public RoundState State { get; private set; }
@@ -34,13 +36,15 @@ namespace gishadev.eclipse.Gameplay.GameFlow
         public float RoundDuration => _config.RoundDuration;
         public int RemainingParts { get; private set; }
 
-        public GameController(Vehicle vehicle, GameConfig config, IEventBus eventBus, IInputService input, IAudioManager audioManager)
+        public GameController(Vehicle vehicle, GameConfig config, IEventBus eventBus, IInputService input,
+            IAudioManager audioManager, PlatformAnimationHandler platformAnimation)
         {
             _vehicle = vehicle;
             _config = config;
             _eventBus = eventBus;
             _input = input;
             _audioManager = audioManager;
+            _platformAnimation = platformAnimation;
         }
 
         public void Start()
@@ -68,6 +72,7 @@ namespace gishadev.eclipse.Gameplay.GameFlow
             if (RemainingTime <= 0f)
             {
                 _audioManager.PlaySFX(SFXAudioEnum.CRUSHING);
+                _platformAnimation.PlayCrush();
                 EndRound(RoundState.Lost);
             }
         }
