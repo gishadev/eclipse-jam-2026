@@ -1141,6 +1141,8 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   mainCamera: {fileID: 541930987}
+  vehicle: {fileID: 1756313281}
+  gameConfig: {fileID: 11400000, guid: a6b4c161fa8148e7be492200840246a3, type: 2}
   orbitalFollow: {fileID: 614231584}
   orbitalCameraConfig: {fileID: 11400000, guid: d949634fb3b54bfdac1512fea9bc7765, type: 2}
   moneyView: {fileID: 1492695379}

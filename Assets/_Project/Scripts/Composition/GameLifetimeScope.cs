@@ -1,3 +1,4 @@
+using gishadev.eclipse.Gameplay.GameFlow;
 using gishadev.eclipse.Gameplay.OrbitalCamera;
 using gishadev.eclipse.Gameplay.Salvage;
 using gishadev.eclipse.GUI;
@@ -17,6 +18,10 @@ namespace gishadev.eclipse.Composition
     {
         [SerializeField] private Camera mainCamera;
 
+        [Header("Game Flow")]
+        [SerializeField] private Vehicle vehicle;
+        [SerializeField] private GameConfig gameConfig;
+
         [Header("Orbital Camera")]
         [SerializeField] private CinemachineOrbitalFollow orbitalFollow;
         [SerializeField] private OrbitalCameraConfig orbitalCameraConfig;
@@ -28,6 +33,7 @@ namespace gishadev.eclipse.Composition
         {
             builder.RegisterComponent(mainCamera);
 
+            new GameFlowInstaller(vehicle, gameConfig).Install(builder);
             new OrbitalCameraInstaller(orbitalFollow, orbitalCameraConfig).Install(builder);
             builder.RegisterEntryPoint<SalvageService>();
             new MoneyGUIInstaller(moneyView).Install(builder);
