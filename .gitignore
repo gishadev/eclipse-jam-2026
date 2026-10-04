@@ -76,3 +76,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+
+# Paid Asset Store packs (not redistributable)
+/[Aa]ssets/Mega Game Music Bundle/
+/[Aa]ssets/Mega Game Music Bundle.meta
