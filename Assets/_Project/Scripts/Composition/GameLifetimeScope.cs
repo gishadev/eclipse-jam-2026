@@ -22,6 +22,9 @@ namespace gishadev.eclipse.Composition
         [SerializeField] private Vehicle vehicle;
         [SerializeField] private GameConfig gameConfig;
 
+        [Header("Salvage")]
+        [SerializeField] private SalvageConfig salvageConfig;
+
         [Header("Orbital Camera")]
         [SerializeField] private CinemachineOrbitalFollow orbitalFollow;
         [SerializeField] private OrbitalCameraConfig orbitalCameraConfig;
@@ -36,7 +39,7 @@ namespace gishadev.eclipse.Composition
 
             new GameFlowInstaller(vehicle, gameConfig).Install(builder);
             new OrbitalCameraInstaller(orbitalFollow, orbitalCameraConfig).Install(builder);
-            builder.RegisterEntryPoint<SalvageService>();
+            new SalvageInstaller(salvageConfig).Install(builder);
             new HUDInstaller(moneyView, timerView).Install(builder);
         }
     }
