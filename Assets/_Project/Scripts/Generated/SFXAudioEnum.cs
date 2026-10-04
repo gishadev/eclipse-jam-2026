@@ -1,4 +1,9 @@
-
 public enum SFXAudioEnum
 {
+	AIR_WRENCH,
+	CASH_REGISTER,
+	CLICK_SFX,
+	CRUSHING,
+	STRIP_METAL,
+	TICKING
 }

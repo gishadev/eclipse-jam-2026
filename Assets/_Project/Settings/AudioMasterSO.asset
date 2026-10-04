@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c1bf31516e49929123b7c97852187f, type: 3}
+  m_Name: AudioMasterSO
+  m_EditorClassIdentifier: gishadev.tools::gishadev.tools.Audio.AudioMasterSO
+  <FadeTransitionTime>k__BackingField: 1
+  <MusicAutoSequencing>k__BackingField: 1
+  <MusicCollection>k__BackingField:
+  - <Name>k__BackingField: Game
+    <AudioClips>k__BackingField:
+    - {fileID: 8300000, guid: 49e76ea1296da9e4087de7b84343c669, type: 3}
+    - {fileID: 8300000, guid: 97abf2a4394585640bdbc4c7e0fb506b, type: 3}
+    - {fileID: 8300000, guid: 99855b2525de34a40adf5ae6babc2c16, type: 3}
+    - {fileID: 8300000, guid: 0180af932e33fb94fba88fd52e159bb4, type: 3}
+    <InitialVolume>k__BackingField: 0.01
+    <Pitch>k__BackingField: 1
+    <IsLooping>k__BackingField: 0
+    <IsFade>k__BackingField: 1
+  <SFXCollection>k__BackingField:
+  - <Name>k__BackingField: air_wrench
+    <AudioClips>k__BackingField:
+    - {fileID: 8300000, guid: 710683232876a2942885a7c1e5d779d9, type: 3}
+    - {fileID: 8300000, guid: 9d5eb9b16f8f6ac45ab17bded7fd7f41, type: 3}
+    - {fileID: 8300000, guid: e3e755ad5acbf744dbcc65f3b364f9cf, type: 3}
+    <InitialVolume>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+  - <Name>k__BackingField: cash_register
+    <AudioClips>k__BackingField:
+    - {fileID: 8300000, guid: 85ffe7acf215f854f9978be571c8212c, type: 3}
+    <InitialVolume>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+  - <Name>k__BackingField: click_sfx
+    <AudioClips>k__BackingField:
+    - {fileID: 8300000, guid: 6f7342a8fc861f14eba3cc4ddaf7e66c, type: 3}
+    <InitialVolume>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+  - <Name>k__BackingField: crushing
+    <AudioClips>k__BackingField:
+    - {fileID: 8300000, guid: 823d956b579884a4686a464f6ff3b8c9, type: 3}
+    <InitialVolume>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+  - <Name>k__BackingField: strip_metal
+    <AudioClips>k__BackingField:
+    - {fileID: 8300000, guid: 76bf17622c719ad43a06118bf19d7105, type: 3}
+    <InitialVolume>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+  - <Name>k__BackingField: ticking
+    <AudioClips>k__BackingField:
+    - {fileID: 8300000, guid: fde932dd59fc4ad4aa04cf46906eab8a, type: 3}
+    <InitialVolume>k__BackingField: 1
+    <Pitch>k__BackingField: 1

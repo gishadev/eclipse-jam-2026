@@ -2,6 +2,7 @@ using System;
 using gishadev.eclipse.Core.Events;
 using gishadev.eclipse.Core.Input;
 using gishadev.eclipse.Gameplay.Salvage;
+using gishadev.tools.Audio;
 using gishadev.tools.Events;
 using UnityEngine;
 using VContainer.Unity;
@@ -25,6 +26,7 @@ namespace gishadev.eclipse.Gameplay.GameFlow
         private readonly GameConfig _config;
         private readonly IEventBus _eventBus;
         private readonly IInputService _input;
+        private readonly IAudioManager _audioManager;
         private IDisposable _partSalvagedSubscription;
 
         public RoundState State { get; private set; }
@@ -32,12 +34,13 @@ namespace gishadev.eclipse.Gameplay.GameFlow
         public float RoundDuration => _config.RoundDuration;
         public int RemainingParts { get; private set; }
 
-        public GameController(Vehicle vehicle, GameConfig config, IEventBus eventBus, IInputService input)
+        public GameController(Vehicle vehicle, GameConfig config, IEventBus eventBus, IInputService input, IAudioManager audioManager)
         {
             _vehicle = vehicle;
             _config = config;
             _eventBus = eventBus;
             _input = input;
+            _audioManager = audioManager;
         }
 
         public void Start()
@@ -52,6 +55,8 @@ namespace gishadev.eclipse.Gameplay.GameFlow
 
             if (RemainingParts == 0)
                 Debug.LogWarning($"{nameof(GameController)}: vehicle has no parts assigned — round can't be won.", _vehicle);
+            
+            _audioManager.PlayMusic(MusicAudioEnum.GAME);
         }
 
         public void Tick()
@@ -61,7 +66,10 @@ namespace gishadev.eclipse.Gameplay.GameFlow
 
             RemainingTime = Mathf.Max(0f, RemainingTime - Time.deltaTime);
             if (RemainingTime <= 0f)
+            {
+                _audioManager.PlaySFX(SFXAudioEnum.CRUSHING);
                 EndRound(RoundState.Lost);
+            }
         }
 
         public void Dispose() => _partSalvagedSubscription?.Dispose();

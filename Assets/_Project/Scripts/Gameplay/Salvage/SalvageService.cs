@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using gishadev.eclipse.Core.Events;
 using gishadev.eclipse.Core.Input;
+using gishadev.tools.Audio;
 using gishadev.tools.Events;
 using PrimeTween;
 using UnityEngine;
@@ -23,17 +24,19 @@ namespace gishadev.eclipse.Gameplay.Salvage
         private readonly IEventBus _eventBus;
         private readonly SalvageConfig _config;
         private readonly Vehicle _vehicle;
-
+        private readonly IAudioManager _audioManager;
+        
         private readonly Dictionary<Part, LooseWobble> _looseWobbles = new();
 
         public SalvageService(IInputService input, Camera camera, IEventBus eventBus, SalvageConfig config,
-            Vehicle vehicle)
+            Vehicle vehicle, IAudioManager audioManager)
         {
             _input = input;
             _camera = camera;
             _eventBus = eventBus;
             _config = config;
             _vehicle = vehicle;
+            _audioManager = audioManager;
         }
 
         public void Initialize() => _input.SalvagePressed += OnSalvagePressed;
@@ -97,6 +100,8 @@ namespace gishadev.eclipse.Gameplay.Salvage
                         StartLooseWobble(part);
                     Object.Destroy(bolt.gameObject);
                 });
+            
+            _audioManager.PlaySFX(SFXAudioEnum.AIR_WRENCH);
         }
 
         // Logic happens immediately (money, win check); the shake + yank is only visual.
@@ -115,6 +120,8 @@ namespace gishadev.eclipse.Gameplay.Salvage
                 .Chain(Tween.Position(t, t.position + surfaceNormal * _config.PartYankDistance,
                     _config.PartYankDuration, _config.PartYankEase))
                 .OnComplete(t, target => Object.Destroy(target.gameObject));
+            
+            _audioManager.PlaySFX(SFXAudioEnum.STRIP_METAL);
         }
 
         // A bolt sits on its part's surface, so part centre → bolt points out of that face.
