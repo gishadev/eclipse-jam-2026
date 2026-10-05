@@ -1,0 +1,143 @@
+:root {
+	--game-background: #121214;
+	--progress-track: rgba(255, 255, 255, 0.14);
+	--progress-fill: #ffffff;
+	--loading-text: #ffffff;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: var(--game-background);
+	font-family: "Myriad Pro", Myriad, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#unity-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--game-background);
+}
+
+#unity-canvas {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	aspect-ratio: 16 / 9;
+	width: min(100vw, calc(100vh * 16 / 9));
+	width: min(100dvw, calc(100dvh * 16 / 9));
+	background-color: var(--game-background);
+	outline: none;
+	touch-action: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#unity-fullscreen-button {
+	height: 32px;
+	width: 32px;
+	position: absolute;
+	z-index: 1;
+	bottom: 0px;
+	right: 0px;
+	background-color: transparent;
+	background-image: url("fullscreen-button-out.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	border: none;
+	cursor: pointer;
+	opacity: 0.333;
+	padding: 24px;
+	transition: opacity 0.15s ease;
+}
+
+#unity-fullscreen-button.is-fullscreen {
+	background-image: url("fullscreen-button-in.png");
+}
+
+#unity-fullscreen-button:hover,
+#unity-fullscreen-button:focus-visible {
+	opacity: 1.0;
+}
+
+#unity-loading-bar {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+	text-align: center;
+}
+
+#unity-progress-bar-empty {
+	width: 256px;
+	height: 20px;
+	max-width: 80vw;
+	border-radius: 10px;
+	background: var(--progress-track);
+	overflow: hidden;
+}
+
+#unity-progress-bar-full {
+	width: 0%;
+	height: 100%;
+	border-radius: inherit;
+	background: var(--progress-fill);
+	transition: width 0.1s linear;
+}
+
+#unity-loading-text {
+	margin-top: 10px;
+	color: var(--loading-text);
+	font-size: 14px;
+	letter-spacing: 0.08em;
+}
+
+#unity-warning {
+	position: absolute;
+	left: 50%;
+	top: 5%;
+	transform: translate(-50%);
+	z-index: 2;
+	max-width: 90vw;
+	display: none;
+}
+
+#unity-warning > div {
+	margin-bottom: 8px;
+	padding: 10px 14px;
+	border-radius: 6px;
+	background: #ffffff;
+	color: #121214;
+	font-size: 14px;
+	line-height: 1.4;
+	text-align: left;
+	word-break: break-word;
+}
+
+#unity-warning > div.unity-banner-error {
+	background: #e5484d;
+	color: #ffffff;
+}
+
+#unity-warning > div.unity-banner-warning {
+	background: #f5d90a;
+	color: #121214;
+}
+
+#unity-container.unity-mobile #unity-canvas {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	transform: none;
+	aspect-ratio: auto;
+}
