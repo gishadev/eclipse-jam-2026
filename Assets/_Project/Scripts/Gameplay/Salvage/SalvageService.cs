@@ -59,6 +59,10 @@ namespace gishadev.eclipse.Gameplay.Salvage
 
         private void OnSalvagePressed()
         {
+            // Physics raycasts ignore UI — without this, clicking a button over a bolt would unscrew it.
+            if (_input.IsPointerOverUI())
+                return;
+
             Ray ray = _camera.ScreenPointToRay(_input.PointerPosition);
             if (!Physics.Raycast(ray, out RaycastHit hit))
                 return;

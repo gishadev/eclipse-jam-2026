@@ -36,6 +36,7 @@ namespace gishadev.eclipse.Composition
         [SerializeField] private TimerView timerView;
         [SerializeField] private ResultView resultView;
         [SerializeField] private StartView startView;
+        [SerializeField] private SettingsView settingsView;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -44,7 +45,7 @@ namespace gishadev.eclipse.Composition
             new GameFlowInstaller(vehicle, gameConfig, platformAnimation).Install(builder);
             new OrbitalCameraInstaller(orbitalFollow, orbitalCameraConfig).Install(builder);
             new SalvageInstaller(salvageConfig).Install(builder);
-            new HUDInstaller(moneyView, timerView, resultView, startView).Install(builder);
+            new HUDInstaller(moneyView, timerView, resultView, startView, settingsView).Install(builder);
         }
     }
 }

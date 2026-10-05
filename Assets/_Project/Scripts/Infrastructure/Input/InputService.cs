@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using gishadev.eclipse.Core.Input;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
 
@@ -13,6 +15,7 @@ namespace gishadev.eclipse.Infrastructure.Input
     public class InputService : IInputService, IInitializable, IDisposable
     {
         private readonly EclipseInput _input = new();
+        private readonly List<RaycastResult> _uiHits = new();
 
         public Vector2 OrbitalMovement => _input.Game.OrbitalMovement.ReadValue<Vector2>();
         public float OrbitalZooming => _input.Game.OrbitalZooming.ReadValue<float>();
@@ -32,6 +35,19 @@ namespace gishadev.eclipse.Infrastructure.Input
             _input.General.Start.performed += OnStartPerformed;
             _input.Game.Salvage.performed += OnSalvagePerformed;
             _input.Enable();
+        }
+
+        // Raycasts the EventSystem directly: IsPointerOverGameObject is unreliable inside Input System callbacks.
+        public bool IsPointerOverUI()
+        {
+            EventSystem eventSystem = EventSystem.current;
+            if (eventSystem == null)
+                return false;
+
+            var pointer = new PointerEventData(eventSystem) { position = PointerPosition };
+            _uiHits.Clear();
+            eventSystem.RaycastAll(pointer, _uiHits);
+            return _uiHits.Count > 0;
         }
 
         public void SetGameInputEnabled(bool enabled)

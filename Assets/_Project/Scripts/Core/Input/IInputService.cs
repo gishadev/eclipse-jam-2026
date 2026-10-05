@@ -25,6 +25,9 @@ namespace gishadev.eclipse.Core.Input
         /// <summary>Pointer position in screen pixels.</summary>
         Vector2 PointerPosition { get; }
 
+        /// <summary>True when the pointer is over a UI element that blocks raycasts (buttons, popups, ...).</summary>
+        bool IsPointerOverUI();
+
         bool IsGameInputEnabled { get; }
 
         event Action PausePressed;
