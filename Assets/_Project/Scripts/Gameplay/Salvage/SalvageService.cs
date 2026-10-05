@@ -65,28 +65,26 @@ namespace gishadev.eclipse.Gameplay.Salvage
 
             // InParent: colliders may sit on child meshes. Bolt first — bolts are children of parts.
             if (hit.collider.GetComponentInParent<Bolt>() is { } bolt)
-                Unscrew(bolt, ray.direction);
+                Unscrew(bolt);
             else if (hit.collider.GetComponentInParent<Part>() is { } part)
                 TrySalvage(part, hit.normal);
         }
 
-        // Spin around the bolt's axis → small shake → pull out along the axis, then destroy.
+        // Spin around the bolt's axis → small shake → pull out along the bolt's authored direction, then destroy.
         // The bolt keeps holding its part until destroyed, so the part can't be pulled mid-unscrew.
-        private void Unscrew(Bolt bolt, Vector3 viewDirection)
+        private void Unscrew(Bolt bolt)
         {
             Transform t = bolt.transform;
             Part part = bolt.GetComponentInParent<Part>();
             DisableColliders(t);
 
-            // Bolt axis is local Z, but its sign isn't authored — flip it to point out of the part.
-            // Not hit.normal: that's the bolt's own capsule normal, ~perpendicular to the axis when
-            // the side is clicked, so its sign is random.
-            Vector3 axis = t.forward;
-            if (Vector3.Dot(axis, OutwardHint(bolt, part, viewDirection)) < 0f)
-                axis = -axis;
+            Vector3 pullDirection = bolt.PullDirection;
+
+            // Spin around local Z, signed to agree with the pull so it always unscrews the same way.
+            Vector3 axis = Vector3.Dot(t.forward, pullDirection) < 0f ? -t.forward : t.forward;
 
             Quaternion startRotation = t.rotation;
-            Vector3 endPosition = t.position + axis * _config.BoltPullDistance;
+            Vector3 endPosition = t.position + pullDirection * _config.BoltPullDistance;
             Vector3 shakeStrength = Vector3.one * _config.BoltShakeStrength;
 
             Sequence.Create(Tween.Custom(t, 0f, 360f * _config.BoltTurns, _config.BoltUnscrewDuration,
@@ -123,11 +121,6 @@ namespace gishadev.eclipse.Gameplay.Salvage
             
             _audioManager.PlaySFX(SFXAudioEnum.STRIP_METAL);
         }
-
-        // A bolt sits on its part's surface, so part centre → bolt points out of that face.
-        // No part above the bolt: fall back to "towards the camera" (a clickable bolt faces it).
-        private static Vector3 OutwardHint(Bolt bolt, Part part, Vector3 viewDirection) =>
-            part != null ? bolt.transform.position - part.transform.position : -viewDirection;
 
         private static bool IsHeldOnlyBy(Part part, Bolt bolt)
         {

@@ -15,7 +15,7 @@ namespace gishadev.eclipse.Gameplay.Salvage
         [SerializeField] private float boltShakeStrength = 0.02f;
         [SerializeField] private float boltShakeFrequency = 30f;
         [SerializeField, Min(0.01f)] private float boltPullDuration = 0.2f;
-        [Tooltip("How far the bolt is pulled out along its axis, in world units.")]
+        [Tooltip("How far the bolt is pulled out along its own Pull Direction, in world units.")]
         [SerializeField] private float boltPullDistance = 0.3f;
         [SerializeField] private Ease boltPullEase = Ease.OutCubic;
 
