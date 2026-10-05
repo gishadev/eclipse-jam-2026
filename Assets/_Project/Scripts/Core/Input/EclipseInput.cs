@@ -379,6 +379,16 @@ namespace gishadev.eclipse.Core.Input
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""06b18f63-6f66-4d29-912b-b4f44aeee8c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -390,6 +400,50 @@ namespace gishadev.eclipse.Core.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66bbf12b-d7a4-441c-945c-d6d4802fe323"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff77c797-48ad-415b-89b6-5e9099015440"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0fa96c4-459c-4eab-a97e-f75f3fe4aefe"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93f88bab-7688-43ef-b85a-2e97b48191cd"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -410,6 +464,7 @@ namespace gishadev.eclipse.Core.Input
             // General
             m_General = asset.FindActionMap("General", throwIfNotFound: true);
             m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
+            m_General_Start = m_General.FindAction("Start", throwIfNotFound: true);
         }
 
         ~@EclipseInput()
@@ -654,6 +709,7 @@ namespace gishadev.eclipse.Core.Input
         private readonly InputActionMap m_General;
         private List<IGeneralActions> m_GeneralActionsCallbackInterfaces = new List<IGeneralActions>();
         private readonly InputAction m_General_Pause;
+        private readonly InputAction m_General_Start;
         /// <summary>
         /// Provides access to input actions defined in input action map "General".
         /// </summary>
@@ -669,6 +725,10 @@ namespace gishadev.eclipse.Core.Input
             /// Provides access to the underlying input action "General/Pause".
             /// </summary>
             public InputAction @Pause => m_Wrapper.m_General_Pause;
+            /// <summary>
+            /// Provides access to the underlying input action "General/Start".
+            /// </summary>
+            public InputAction @Start => m_Wrapper.m_General_Start;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -698,6 +758,9 @@ namespace gishadev.eclipse.Core.Input
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
 
             /// <summary>
@@ -712,6 +775,9 @@ namespace gishadev.eclipse.Core.Input
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
+                @Start.started -= instance.OnStart;
+                @Start.performed -= instance.OnStart;
+                @Start.canceled -= instance.OnStart;
             }
 
             /// <summary>
@@ -816,6 +882,13 @@ namespace gishadev.eclipse.Core.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnPause(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Start" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnStart(InputAction.CallbackContext context);
         }
     }
 }

@@ -23,11 +23,13 @@ namespace gishadev.eclipse.Infrastructure.Input
         public bool IsGameInputEnabled => _input.Game.enabled;
 
         public event Action PausePressed;
+        public event Action StartPressed;
         public event Action SalvagePressed;
 
         public void Initialize()
         {
             _input.General.Pause.performed += OnPausePerformed;
+            _input.General.Start.performed += OnStartPerformed;
             _input.Game.Salvage.performed += OnSalvagePerformed;
             _input.Enable();
         }
@@ -43,12 +45,14 @@ namespace gishadev.eclipse.Infrastructure.Input
         public void Dispose()
         {
             _input.General.Pause.performed -= OnPausePerformed;
+            _input.General.Start.performed -= OnStartPerformed;
             _input.Game.Salvage.performed -= OnSalvagePerformed;
             _input.Disable();
             _input.Dispose();
         }
 
         private void OnPausePerformed(InputAction.CallbackContext _) => PausePressed?.Invoke();
+        private void OnStartPerformed(InputAction.CallbackContext _) => StartPressed?.Invoke();
         private void OnSalvagePerformed(InputAction.CallbackContext _) => SalvagePressed?.Invoke();
     }
 }

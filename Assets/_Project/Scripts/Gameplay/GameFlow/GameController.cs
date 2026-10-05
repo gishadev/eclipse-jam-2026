@@ -12,6 +12,7 @@ namespace gishadev.eclipse.Gameplay.GameFlow
 {
     public enum RoundState
     {
+        WaitingToStart,
         Playing,
         Won,
         Lost,
@@ -19,7 +20,8 @@ namespace gishadev.eclipse.Gameplay.GameFlow
 
     /// <summary>
     /// Owns the round: win when every part of the <see cref="Vehicle"/> is salvaged,
-    /// lose when <see cref="GameConfig.RoundDuration"/> runs out. Fires <see cref="RoundEndedEvent"/> once.
+    /// lose when <see cref="GameConfig.RoundDuration"/> runs out. Starts on the first StartPressed
+    /// (<see cref="RoundStartedEvent"/>), ends once (<see cref="RoundEndedEvent"/>).
     /// </summary>
     public class GameController : IStartable, ITickable, IDisposable
     {
@@ -47,14 +49,16 @@ namespace gishadev.eclipse.Gameplay.GameFlow
             _platformAnimation = platformAnimation;
         }
 
+        // Round is prepared but waits for StartPressed (press-to-start popup); timer doesn't run yet.
         public void Start()
         {
-            State = RoundState.Playing;
+            State = RoundState.WaitingToStart;
             RemainingTime = _config.RoundDuration;
             RemainingParts = CountParts();
 
-            // Input lives in the Project scope, so a previous round may have left it disabled.
-            _input.SetGameInputEnabled(true);
+            // Input lives in the Project scope, so a previous round may have left it in any state.
+            _input.SetGameInputEnabled(false);
+            _input.StartPressed += OnStartPressed;
             _partSalvagedSubscription = _eventBus.Subscribe<PartSalvagedEvent>(OnPartSalvaged);
 
             if (RemainingParts == 0)
@@ -77,7 +81,22 @@ namespace gishadev.eclipse.Gameplay.GameFlow
             }
         }
 
-        public void Dispose() => _partSalvagedSubscription?.Dispose();
+        public void Dispose()
+        {
+            _input.StartPressed -= OnStartPressed;
+            _partSalvagedSubscription?.Dispose();
+        }
+
+        private void OnStartPressed()
+        {
+            if (State != RoundState.WaitingToStart)
+                return;
+
+            _input.StartPressed -= OnStartPressed;
+            State = RoundState.Playing;
+            _input.SetGameInputEnabled(true);
+            _eventBus.Fire(new RoundStartedEvent());
+        }
 
         // Counted via events, not by polling the vehicle: Destroy is deferred, so a just-salvaged
         // part is still alive in the frame it's salvaged.

@@ -10,12 +10,14 @@ namespace gishadev.eclipse.Composition
         private readonly MoneyView _moneyView;
         private readonly TimerView _timerView;
         private readonly ResultView _resultView;
+        private readonly StartView _startView;
 
-        public HUDInstaller(MoneyView moneyView, TimerView timerView, ResultView resultView)
+        public HUDInstaller(MoneyView moneyView, TimerView timerView, ResultView resultView, StartView startView)
         {
             _moneyView = moneyView;
             _timerView = timerView;
             _resultView = resultView;
+            _startView = startView;
         }
 
         public void Install(IContainerBuilder builder)
@@ -28,6 +30,9 @@ namespace gishadev.eclipse.Composition
 
             builder.RegisterComponent(_resultView);
             builder.RegisterEntryPoint<ResultPresenter>();
+
+            builder.RegisterComponent(_startView);
+            builder.RegisterEntryPoint<StartPresenter>();
         }
     }
 }

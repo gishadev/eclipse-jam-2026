@@ -29,6 +29,9 @@ namespace gishadev.eclipse.Core.Input
 
         event Action PausePressed;
 
+        /// <summary>Any keyboard key or mouse button (General map, so it works while Game input is off).</summary>
+        event Action StartPressed;
+
         /// <summary>Salvage click (LMB). Read <see cref="PointerPosition"/> for where.</summary>
         event Action SalvagePressed;
 
